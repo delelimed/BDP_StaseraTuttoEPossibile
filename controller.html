@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regia - Stasera tutto è possibile... dopo la Cresima!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <!-- Barra superiore -->
+  <header class="topbar">
+    <h1 class="app-title">REGIA <span class="badge"></span></h1>
+    <div class="topbar-actions">
+      <a class="btn btn-link" href="./gestione.html" target="_blank" rel="noopener">⚙️ Gestione</a>
+      <div class="status">
+        <span class="dot" id="connDot"></span>
+        <span id="connText">Connessione...</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="grid">
+    <!-- ============ REGIA ============ -->
+    <section class="panel regia-panel">
+      <h2>Pannello di Regia</h2>
+
+      <div class="view-switch">
+        <button type="button" class="btn view-btn" data-view="lobby">🎭 Lobby</button>
+        <button type="button" class="btn view-btn" data-view="leaderboard">🏆 Classifica</button>
+        <button type="button" class="btn view-btn" data-view="standby">⬛ Standby</button>
+      </div>
+
+      <div class="game-selector">
+        <label>Giochi — clicca per mandarlo in onda</label>
+        <div class="game-grid" id="gameGrid"></div>
+        <p class="empty-hint" id="gameGridEmpty">Nessun gioco: crealo dalla pagina ⚙️ Gestione.</p>
+      </div>
+
+      <div class="phrase-area hidden" id="phraseArea">
+        <label>Frase / Parola attiva</label>
+        <div class="phrase-controls">
+          <button type="button" class="btn" id="btnToggleExplanation">🙈 Mostra/Nascondi spiegazione</button>
+          <button type="button" class="btn" id="btnNext">Prossimo ▶</button>
+          <button type="button" class="btn" id="btnRandom">Casuale 🎲</button>
+        </div>
+        <div class="current-phrase" id="currentPhraseDisplay">—</div>
+        <div class="game-hint" id="gameHint"></div>
+      </div>
+    </section>
+
+    <!-- ============ PUNTEGGI ============ -->
+    <section class="panel scores-panel">
+      <div class="panel-head">
+        <h2>Squadre &amp; Punteggi</h2>
+        <span class="count-badge" id="teamScoreCount">0</span>
+      </div>
+      <p class="panel-sub">Regola i punteggi al volo durante la serata: −1 / +1 / +5 oppure scrivi il valore esatto.</p>
+      <div class="teams-list" id="teamsScoreList"></div>
+      <p class="empty-hint" id="teamsScoreEmpty">Nessuna squadra: creale dalla pagina ⚙️ Gestione.</p>
+    </section>
+
+    <!-- ============ AUDIO ============ -->
+    <section class="panel audio-panel">
+      <h2>Audio &amp; Suoni</h2>
+      <div class="music-tracks" id="musicTracks"><!-- pulsanti tracce musicali --></div>
+      <div class="audio-controls">
+        <button type="button" class="btn sfx" data-sound="corretto">✅ Corretto</button>
+        <button type="button" class="btn sfx" data-sound="errato">❌ Errato</button>
+        <button type="button" class="btn sfx" data-sound="sirena">🚨 Sirena</button>
+        <button type="button" class="btn sfx" data-sound="buzz">🚫 Buzz</button>
+        <button type="button" class="btn sfx" data-sound="applausi">👏 Applausi</button>
+        <button type="button" class="btn btn-stop" id="btnStopAudio">⏹ Stop Audio</button>
+      </div>
+      <div class="hint">L'audio viene inviato anche alla TV tramite Firebase.</div>
+      <div class="hint" id="musicHint" role="status" aria-live="polite"></div>
+    </section>
+
+    <!-- ============ TIMER ============ -->
+    <section class="panel timer-panel">
+      <h2>Timer</h2>
+      <div class="timer-display" id="timerDisplay" aria-live="polite">00:00</div>
+      <div class="timer-presets">
+        <button type="button" class="btn" data-preset="60">60s</button>
+        <button type="button" class="btn" data-preset="30">30s</button>
+        <button type="button" class="btn" data-preset="10">10s</button>
+        <input type="number" id="timerCustom" placeholder="s" min="1" value="60">
+        <button type="button" class="btn" id="btnSetCustom">Imposta</button>
+      </div>
+      <div class="timer-actions">
+        <button type="button" class="btn btn-start" id="btnTimerStart">▶ Avvia</button>
+        <button type="button" class="btn btn-pause" id="btnTimerPause" disabled>⏸ Pausa</button>
+        <button type="button" class="btn btn-reset" id="btnTimerReset">⟳ Reset</button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script type="module" src="./app.js"></script>
+<script type="module" src="./controller.js"></script>
+</body>
+</html>

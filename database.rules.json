@@ -1,0 +1,15 @@
+{
+  "rules": {
+    // L'app usa SOLO il nodo "roomState" per lo stato live
+    // (vista, gioco in onda, frase, timer, audio).
+    // Il nodo speciale ".info" (es. ".info/connected") è sempre leggibile.
+    //
+    // In MODALITÀ EVENTO la scrittura è aperta perché non c'è login: va bene
+    // su un progetto privato. Prima di renderlo pubblico, aggiungi un controllo
+    // su auth: es. ".write": "auth != null".
+    "roomState": {
+      ".read": true,
+      ".write": true
+    }
+  }
+}

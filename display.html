@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Proiezione - Stasera tutto è possibile... dopo la Cresima!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;700;900&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="tv-body">
+<div class="tv-wrap">
+  <div class="tv-glow tv-glow-a"></div>
+  <div class="tv-glow tv-glow-b"></div>
+
+  <!-- Header fisso con tabellone -->
+  <header class="tv-header">
+    <div class="tv-brand">
+      <img class="tv-brand-logo" src="Media/immagini/logo-gruppo.png"
+           alt="Barca di Pietro - Parrocchia San Nicola da Bari Mentana">
+      <div class="logo">
+        <span class="logo-main">Stasera tutto è possibile</span>
+        <span class="logo-sub">… dopo la Cresima!</span>
+      </div>
+    </div>
+    <div class="scoreboard" id="tvScoreboard"><!-- dinamico --></div>
+  </header>
+
+  <main class="tv-main" id="tvMain">
+    <!-- Vista Lobby -->
+    <section class="tv-view lobby-view" id="viewLobby">
+      <h1 class="tv-title" id="viewLobbyTitle">In attesa della regia</h1>
+      <p class="tv-subtitle">Ecco le squadre in gara</p>
+      <div class="lobby-teams" id="lobbyTeams"></div>
+    </section>
+
+    <!-- Vista Gioco -->
+    <section class="tv-view game-view hidden" id="viewGame">
+      <div class="game-head">
+        <span class="game-emoji" id="tvGameEmoji">🎲</span>
+        <span class="game-tag" id="tvGameTag">Gioco</span>
+      </div>
+      <div class="timer-pill hidden" id="tvTimer">00:00</div>
+
+      <div class="explanation" id="tvExplanation">
+        <span class="explanation-label">Come si gioca</span>
+        <p class="explanation-text" id="tvExplanationText">—</p>
+      </div>
+
+      <div class="phrase-wrap hidden" id="tvPhraseWrap">
+        <p class="phrase" id="tvPhrase">—</p>
+      </div>
+    </section>
+
+    <!-- Vista Classifica -->
+    <section class="tv-view leaderboard-view hidden" id="viewLeaderboard">
+      <h1 class="tv-title">🏆 Classifica</h1>
+      <ol class="leaderboard" id="leaderboard"></ol>
+    </section>
+
+    <!-- Vista Standby -->
+    <section class="tv-view standby-view hidden" id="viewStandby">
+      <div class="standby-stage">
+        <div class="standby-aura" aria-hidden="true"></div>
+
+        <!-- Logo dell'app (stesso file di Media/immagini/logo.svg, inline per animare gli anelli) -->
+        <svg class="standby-badge" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-label="Stasera tutto è possibile... dopo la Cresima!">
+          <defs>
+            <radialGradient id="ringBg" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#2a1b4e" />
+              <stop offset="70%" stop-color="#120924" />
+              <stop offset="100%" stop-color="#05020a" />
+            </radialGradient>
+
+            <linearGradient id="goldText" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FFF2A3" />
+              <stop offset="30%" stop-color="#FFD700" />
+              <stop offset="70%" stop-color="#CCA100" />
+              <stop offset="100%" stop-color="#8B6900" />
+            </linearGradient>
+
+            <linearGradient id="silverText" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#FFFFFF" />
+              <stop offset="50%" stop-color="#E0E0E0" />
+              <stop offset="100%" stop-color="#888888" />
+            </linearGradient>
+
+            <linearGradient id="purpleNeon" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#D800FF" />
+              <stop offset="100%" stop-color="#6600FF" />
+            </linearGradient>
+
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="8" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
+
+          <!-- Anelli: ruotano lentamente -->
+          <g class="logo-rings">
+            <circle cx="400" cy="400" r="360" fill="url(#ringBg)" stroke="url(#purpleNeon)" stroke-width="16" filter="url(#glow)" />
+            <circle cx="400" cy="400" r="340" fill="none" stroke="#FFD700" stroke-width="4" opacity="0.6" />
+            <circle cx="400" cy="400" r="320" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="12 8" opacity="0.4" />
+            <circle cx="400" cy="400" r="290" fill="none" stroke="url(#purpleNeon)" stroke-width="6" opacity="0.8" />
+          </g>
+
+          <text class="logo-line-top" x="400" y="240" font-family="'Arial Black', 'Trebuchet MS', sans-serif" font-size="64" font-weight="900" fill="url(#silverText)" text-anchor="middle" letter-spacing="4" filter="url(#glow)">
+            STASERA
+          </text>
+
+          <polygon class="logo-star" points="400,265 407,280 424,282 411,294 415,310 400,301 385,310 389,294 376,282 393,280" fill="#FFD700" />
+
+          <text x="400" y="370" font-family="'Impact', 'Arial Black', sans-serif" font-size="100" font-weight="bold" fill="url(#goldText)" text-anchor="middle" letter-spacing="2">
+            TUTTO È
+          </text>
+
+          <text x="400" y="480" font-family="'Impact', 'Arial Black', sans-serif" font-size="105" font-weight="bold" fill="url(#goldText)" text-anchor="middle" letter-spacing="2">
+            POSSIBILE
+          </text>
+
+          <g class="logo-banner" transform="translate(400, 580)">
+            <rect x="-240" y="-45" width="480" height="70" rx="35" fill="#120924" stroke="#FFD700" stroke-width="4" filter="url(#glow)" />
+            <text x="0" y="3" font-family="'Brush Script MT', 'Comic Sans MS', cursive, sans-serif" font-size="42" font-weight="bold" fill="#00FFFF" text-anchor="middle" filter="url(#glow)">
+              ...dopo la Cresima!
+            </text>
+          </g>
+        </svg>
+
+        <div class="standby-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+
+        <!-- Logo del gruppo (Barca di Pietro) -->
+        <img class="standby-group" src="Media/immagini/logo-gruppo.png"
+             alt="Barca di Pietro - Parrocchia San Nicola da Bari Mentana">
+      </div>
+    </section>
+  </main>
+
+  <footer class="tv-footer">
+    <div class="hint" id="tvHint">In attesa della regia…</div>
+    <div class="status tv-status">
+      <span class="dot" id="connDot"></span>
+      <span id="connText">Connessione...</span>
+    </div>
+  </footer>
+
+  <!-- Overlay mostrato solo se la TV perde la connessione a Firebase -->
+  <div class="tv-offline hidden" id="tvOffline" role="status" aria-live="assertive">
+    <span class="tv-offline-dot" aria-hidden="true"></span>
+    <span>Connessione persa — riconnessione…</span>
+  </div>
+</div>
+
+<script type="module" src="./app.js"></script>
+<script type="module" src="./display.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+{
+  "firestore": {
+    "database": "(default)",
+    "location": "eur3",
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      ".git/**",
+      ".agents/**",
+      ".firebase/**",
+      "**/node_modules/**",
+      "package.json",
+      "package-lock.json",
+      "skills-lock.json",
+      "firestore.rules",
+      "database.rules.json",
+      "firestore.indexes.json",
+      "**/*.log"
+    ],
+    "rewrites": [
+      {
+        "source": "/controller",
+        "destination": "/controller.html"
+      },
+      {
+        "source": "/display",
+        "destination": "/display.html"
+      },
+      {
+        "source": "/gestione",
+        "destination": "/gestione.html"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "/**",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache, must-revalidate" }
+        ]
+      },
+      {
+        "source": "**/*.@(png|jpg|jpeg|svg|webp|gif|mp3|wav|ico)",
+        "headers": [
+          { "key": "Cache-Control", "value": "public, max-age=3600" }
+        ]
+      },
+      {
+        "source": "/controller",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache, must-revalidate" }
+        ]
+      },
+      {
+        "source": "/display",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache, must-revalidate" }
+        ]
+      },
+      {
+        "source": "/gestione",
+        "headers": [
+          { "key": "Cache-Control", "value": "no-cache, must-revalidate" }
+        ]
+      }
+    ]
+  },
+  "database": {
+    "rules": "database.rules.json"
+  }
+}

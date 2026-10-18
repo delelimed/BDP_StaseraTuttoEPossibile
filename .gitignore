@@ -1,0 +1,51 @@
+# ============================================================
+# .gitignore - Stasera Tutto è Possibile
+# Non commitare mai credenziali o dipendenze locali.
+# ============================================================
+
+# --- Credenziali Firebase (NON caricare su GitHub!) ---
+firebase-config.js
+
+# Variabili d'ambiente
+.env
+.env.local
+.env.*.local
+
+# --- Node / dipendenze ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# --- Build / output ---
+dist/
+build/
+.out/
+.next/
+nuxt/
+
+# --- IDE / editor ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# --- Logs ---
+logs/
+*.log
+
+# --- Media (file pesanti opzionali, decommenta se vuoi escluderli) ---
+# Media/audio/
+# Media/immagini/
+
+# --- Firebase / hosting ---
+.firebase/
+firebase-debug.log
+
+# --- Temp ---
+.tmp/
+tmp/

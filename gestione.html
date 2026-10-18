@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestione - Stasera tutto è possibile... dopo la Cresima!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <!-- Barra superiore -->
+  <header class="topbar">
+    <h1 class="app-title">GESTIONE <span class="badge">SETUP</span></h1>
+    <div class="topbar-actions">
+      <a class="btn btn-link" href="./controller.html">🎬 Apri Regia</a>
+      <div class="status">
+        <span class="dot" id="connDot"></span>
+        <span id="connText">Connessione...</span>
+      </div>
+    </div>
+  </header>
+
+  <div id="cfgWarn" class="panel warn-panel">
+  </div>
+
+  <main class="grid">
+    <!-- ============ SQUADRE ============ -->
+    <section class="panel teams-panel">
+      <div class="panel-head">
+        <h2>Squadre</h2>
+        <span class="count-badge" id="teamCount">0</span>
+      </div>
+      <p class="panel-sub">Modifica i nomi, aggiungi i componenti e regola i punteggi.</p>
+      <div class="teams-list" id="teamsList"></div>
+      <button type="button" class="btn btn-add" id="btnAddTeam">＋ Aggiungi squadra</button>
+    </section>
+
+    <!-- ============ GIOCHI (editor) ============ -->
+    <section class="panel games-panel">
+      <h2>🎲 Giochi</h2>
+      <div class="game-selector">
+        <label>Scegli un gioco da modificare</label>
+        <div class="game-grid" id="gameEditGrid"></div>
+      </div>
+      <button type="button" class="btn btn-add" id="btnAddGame">＋ Nuovo gioco</button>
+
+      <div class="game-editor hidden" id="gameEditor">
+        <label>Nome del gioco</label>
+        <input type="text" id="gameLabelInput" placeholder="Nome del gioco">
+
+        <label>Emoji / icona proiettata in TV (una sola)</label>
+        <div class="emoji-row">
+          <input type="text" id="gameEmojiInput" placeholder="🎲">
+          <div class="emoji-quick" id="emojiQuick"><!-- pulsanti rapidi --></div>
+        </div>
+
+        <label>Spiegazione (proiettata sul display TV)</label>
+        <textarea id="gameExplanationInput" rows="4" placeholder="Spiega come si gioca..."></textarea>
+
+        <div class="editor-actions">
+          <button type="button" class="btn primary" id="btnSaveGame">💾 Salva gioco</button>
+          <button type="button" class="btn btn-move" id="btnMoveGameUp" title="Sposta il gioco su">▲ Su</button>
+          <button type="button" class="btn btn-move" id="btnMoveGameDown" title="Sposta il gioco giù">▼ Giù</button>
+          <button type="button" class="btn btn-danger" id="btnDeleteGame">🗑 Elimina gioco</button>
+        </div>
+
+        <h3 class="sub-head">Frasi del gioco <span class="opt">(opzionali)</span></h3>
+        <div class="phrase-input-row">
+          <input type="text" id="newPhraseInput" placeholder="Scrivi una nuova frase...">
+          <button type="button" class="btn" id="btnAddPhrase">Aggiungi</button>
+        </div>
+        <ul id="phraseList"></ul>
+        <button type="button" class="btn" id="btnResetPhrases">↩ Ripristina frasi default</button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script type="module" src="./app.js"></script>
+<script type="module" src="./gestione.js"></script>
+</body>
+</html>
